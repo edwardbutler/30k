@@ -12,3 +12,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.progress-bar {
+  position: relative;
+  height: 50px;
+  width: 75%;
+  border-radius: 50px;
+  border: 1px solid #333;
+}
+
+.filler {
+  background: #1DA598;
+  height: 100%;
+  border-radius: inherit;
+  transition: width .2s ease-in;
+}
+
+button {
+  margin-right: 10px;
+  padding: 7px 12px;
+  font-size: 14px;
+  background: #d14836;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  outline: 0;
+}
+
+/* .progressBarFill {
+  background: blue;
+  height: 100px;
+  width: 50%;
+  border-radius: 30px;
+} */
+
