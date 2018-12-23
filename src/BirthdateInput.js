@@ -48,27 +48,34 @@ export default class BirthdateInput extends React.Component {
                 <FormControl variant="outlined" className='column row'>
 
                     <div className="formInput">
-                        <TextField
-                                id="date"
-                                variant="outlined"
-                                label="Birth Date"
-                                type="date"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onChange={this.handleChange}
-                                value={this.state.birthday}
-                            />
-                    </div>
+                        <div>
+                            <TextField
+                                    id="date"
+                                    variant="outlined"
+                                    label="Birth Date"
+                                    type="date"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    onChange={this.handleChange}
+                                    value={this.state.birthday}
+                                />
+                        </div>
+
+                        <div>
+                            <Button 
+                                variant="contained" 
+                                size="large" 
+                                type="submit"
+                                color="primary">
+                                Done
+                            </Button>
+                        </div>
+                        
                         
 
-                        <Button 
-                            variant="contained" 
-                            size="large" 
-                            type="submit"
-                            color="primary">
-                            Submit
-                        </Button>
+                    </div>
+                        
 
                 </FormControl>
             </form>

@@ -69,9 +69,16 @@ code {
 }
 
 .formInput {
+  display: flex;
+  align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.formInput div {
+  margin: 0 3px;
+}
+
 .footer {
   /* border: 1px solid blue; */
   margin:15px;
