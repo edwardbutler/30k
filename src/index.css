@@ -59,12 +59,19 @@ code {
 
 .birthdayInput {
   margin:50px;
+  /* border: 1px solid #3498db; */
+  /* border-radius: 20px; */
+  padding: 40px;
 }
 
 .banner {
   font-size: 60px;
 }
 
+.formInput {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 .footer {
   /* border: 1px solid blue; */
   margin:15px;
