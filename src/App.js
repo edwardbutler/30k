@@ -6,7 +6,7 @@ import Dashboard from './Dashboard';
 import BirthdateInput from './BirthdateInput';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-// Or Create your Own theme:
+// This is a custom theme to overrid ethe primary color of the material UI library
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -22,34 +22,34 @@ class App extends Component {
       birthDate: undefined
     }
     this.setBirthday = this.setBirthday.bind(this);
-    // this.storeBirthday = this.storeBirthday.bind(this);
+    this.storeBirthday = this.storeBirthday.bind(this);
   }
-  setBirthday(birthday) {
-    console.log("setting birthday...");
-    const birthDate = new Date(birthday);
+  setBirthday(birthdayString) {
+    const birthDate = new Date(birthdayString);
+    this.storeBirthday(birthdayString);
     this.setState({
-      birthDate: birthDate
+      birthDate
     });
   }
-  // storeBirthday(birthdayString) {
-  //   const birthday = Date(birthdayString);
-  //   // chrome.storage.local.set({birthDate: birthday}, function() {
-  //   //   console.log('Value is set to ' + birthday);
-  //   // });
-  // }
+  storeBirthday(birthdayString) {
+    const birthDate = birthdayString;
+    chrome.storage.local.set({key: birthDate}, function() {
+    });
+  }
   componentDidMount() {
     // Try to load the birthdate from storage
-    // console.log(chrome.storage);
-    // chrome.storage.sync.get(['birthDate'], function(result) {
-    //   console.log('Stored birthday currently is ' + result.key);
-    //   this.setBirthday(result.key);
-    // });
+    chrome.storage.local.get(['key'], function(result) {
+      if (result.key) {
+        this.setState({
+          birthDate: new Date(result.key)
+        });
+      }
+    }.bind(this));
   }
 
   render() {
     return (
       <div className="App">
-        {this.state.birthDate ? <h1>Your Birthday is {this.state.birthDate.toLocaleDateString()}</h1> : undefined}
         <MuiThemeProvider theme={theme}>
           {this.state.birthDate && <Dashboard birthDate={this.state.birthDate}/>}
           {!this.state.birthDate && <BirthdateInput onSubmit={this.setBirthday}/>}
