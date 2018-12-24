@@ -1,52 +1,42 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormControl from "@material-ui/core/FormControl";
+import Utils from './utils';
 
 export default class BirthdateInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            birthday: '',
-            month: 10,
-            day: '',
-            year: ''
+            birthday: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.isValidDate = this.isValidDate.bind(this);
     }
 
     handleChange(event) {
-       const value = event.target.value;
+       const birthday = event.target.value;
        this.setState({
-           birthday: value
+           birthday
        });
-    }
-
-    constructBirthdayObject() {
-        const birthDayString = this.state.month + ' ' + this.state.day + ', ' + this.state.year + '00:00:00';
-        return new Date(birthDayString);
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log("submit clicked");
-        console.log(this.state.birthday)
-        const birthdayObject = this.constructBirthdayObject();
-        this.props.onSubmit(birthdayObject);
+        this.props.onSubmit(this.state.birthday);
     }
-   
+
+    isValidDate(dateString) {
+        return Utils.isValidBirthDate(dateString);
+    }
+
     render() {
         return (
             <div className="birthdayInput">
                <h1>When were you born?</h1>
                <form onSubmit={this.handleSubmit}>
-
-                <FormControl variant="outlined" className='column row'>
-
+                <FormControl variant="outlined">
                     <div className="formInput">
                         <div>
                             <TextField
@@ -61,22 +51,16 @@ export default class BirthdateInput extends React.Component {
                                     value={this.state.birthday}
                                 />
                         </div>
-
                         <div>
-                            <Button 
+                            {this.isValidDate(this.state.birthday) && <Button 
                                 variant="contained" 
                                 size="large" 
                                 type="submit"
                                 color="primary">
                                 Done
-                            </Button>
+                            </Button>}
                         </div>
-                        
-                        
-
                     </div>
-                        
-
                 </FormControl>
             </form>
             </div>

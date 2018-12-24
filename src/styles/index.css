@@ -84,6 +84,15 @@ code {
   margin:15px;
 }
 
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: #2979ff;
+}
+a:visited {
+  color: #2196f3;
+}
 
 
 
